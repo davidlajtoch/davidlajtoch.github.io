@@ -1,0 +1,35 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  font-family: 'Rajdhani', sans-serif;
+}
+.rozvrh {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+.rozvrh th,
+.rozvrh td {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  min-width: 50px;
+}
+.rozvrh .practice {
+  background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+  color: white;
+}
+.rozvrh .practice:hover {
+  opacity: 80%;
+  transition: 150ms;
+}
+.rozvrh .lecture {
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  color: white;
+}
+.rozvrh .lecture:hover {
+  opacity: 80%;
+  transition: 150ms;
+}
