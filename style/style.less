@@ -2,41 +2,89 @@
     width: 90%;
     margin: 0 auto;
     font-family: 'Rajdhani', sans-serif;
-}
 
-.rozvrh {
-
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 5px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-
-    th,
-    td {
-        background-color: white;
-        padding: 10px;
-        border: 1px solid #cccccc;
+    .timetable {
+        width: 100%;
+        border-collapse: collapse;
         border-radius: 5px;
-        min-width: 50px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    
+        th,
+        td {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            min-width: 50px;
+        }
+    
+        .practice {
+            background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+            color: white;
+        }
+    
+        .practice:hover {
+            opacity: 80%;
+            transition: 150ms;
+        }
+    
+        .lecture {
+            background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+            color: white;
+        }
+    
+        .lecture:hover {
+            opacity: 80%;
+            transition: 150ms;
+        }
+
+        
+    
+        .pale{
+            opacity: 40%;
+        }
     }
 
-    .practice {
-        background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+    .nav{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #button_lecture, #button_practice{
         color: white;
+        width: 150px;
+        border: 1px solid #cccccc;
+        outline: none;
+        font-family: 'Rajdhani', sans-serif;
     }
 
-    .practice:hover {
+    #button_lecture{
+        background-image: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+        margin-right: 2px;
+        margin-left: 5px;
+    }
+
+    #button_practice{  
+        background-image: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+    }
+
+    #button_lecture:hover, #button_practice:hover{
         opacity: 80%;
+        cursor: pointer;
         transition: 150ms;
     }
 
-    .lecture {
-        background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-        color: white;
+    .button_lecture_inactive, .button_practice_inactive{
+        background-image: none !important;
+        background-color: white !important;
+        color: black !important;
     }
 
-    .lecture:hover {
-        opacity: 80%;
-        transition: 150ms;
-    }
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+      width: 99%;
+    }
+  }
