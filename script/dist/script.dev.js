@@ -16,6 +16,7 @@ window.addEventListener('load', function (event) {
 
 function setTime() {
   time = new Date();
+  setPin(time);
   document.getElementById('time').innerText = time.toLocaleString();
 }
 
@@ -57,4 +58,14 @@ function buttonShowPractice() {
       items[i].classList.add('pale');
     }
   }
+}
+
+function setPin(time) {
+  var pin = document.getElementById('pin');
+  var pin_height = pin.offsetHeight;
+  pin.style.top = pin_height * time.getDay() + 'px';
+  var table_cell_width = document.getElementById('first_cell').offsetWidth;
+  console.log(table_cell_width);
+  var secs = time.getSeconds() + 60 * time.getMinutes() + 60 * 60 * time.getHours();
+  pin.style.left = (document.getElementById('timetable').offsetWidth - table_cell_width) / 30600 * (secs - 26100) + table_cell_width + 'px';
 }

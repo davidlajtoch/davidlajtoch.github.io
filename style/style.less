@@ -3,28 +3,39 @@
     margin: 0 auto;
     font-family: 'Rajdhani', sans-serif;
 
-    .timetable {
+    #time{
+        font-size: 30px;
+    }
+
+    #timetable {
         width: 100%;
         border-collapse: collapse;
         border-radius: 5px;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        overflow: hidden;
     
         th,
-        td {
+        td, tr {
             background-color: white;
-            padding: 10px;
             border: 1px solid #cccccc;
-            min-width: 50px;
+            width: 100px;
+            height: 80px;
+            overflow: hidden;
         }
-    
+
+        th{
+            background-color: #f2f2f2;
+        }
+
+        tr{
+            td:nth-child(odd) {
+                width: 133px;
+              }
+        }
+
         .practice {
             background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
             color: white;
-        }
-    
-        .practice:hover {
-            opacity: 80%;
-            transition: 150ms;
         }
     
         .lecture {
@@ -32,15 +43,38 @@
             color: white;
         }
     
-        .lecture:hover {
+        .lecture:hover, .practice:hover {
             opacity: 80%;
             transition: 150ms;
+            cursor: pointer;
         }
 
-        
-    
         .pale{
             opacity: 40%;
+        }
+    }
+
+    .timetable_container{
+        position: relative;
+        #pin{
+            position: absolute;
+            border-left: 5px solid rgba(0, 204, 102, 0.7);
+            height: 83px;
+            z-index: 2;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            &:before{
+                content: '';
+                width: 15px;
+                height: 15px;
+                border-radius: 10px;
+                position: absolute;
+                left: -10.5px;
+                top: -6px;
+                background-color: rgb(0, 204, 102, 0.7);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+              }
         }
     }
 
@@ -54,9 +88,11 @@
     #button_lecture, #button_practice{
         color: white;
         width: 150px;
+        height: 30px;
         border: 1px solid #cccccc;
         outline: none;
         font-family: 'Rajdhani', sans-serif;
+        margin-top: 5px;
     }
 
     #button_lecture{
