@@ -16,7 +16,7 @@ window.addEventListener('load', function (event) {
 
 function setTime() {
   time = new Date();
-  setPin(time);
+  if (time) setPin(time);
   document.getElementById('time').innerText = time.toLocaleString();
 }
 
@@ -67,5 +67,12 @@ function setPin(time) {
   var table_cell_width = document.getElementById('first_cell').offsetWidth;
   console.log(table_cell_width);
   var secs = time.getSeconds() + 60 * time.getMinutes() + 60 * 60 * time.getHours();
-  pin.style.left = (document.getElementById('timetable').offsetWidth - table_cell_width) / 30600 * (secs - 26100) + table_cell_width + 'px';
+  var secs_in_timetable = 30600;
+  var secs_until_timetable = 26100;
+
+  if (secs < secs_until_timetable || secs > secs_until_timetable + secs_in_timetable) {
+    pin.style.display = 'none';
+  } else {
+    pin.style.left = (document.getElementById('timetable').offsetWidth - table_cell_width) / secs_in_timetable * (secs - secs_until_timetable) + table_cell_width + 'px';
+  }
 }
