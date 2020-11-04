@@ -1,5 +1,5 @@
 var time = new Date();
-var current_item;
+var current_item_id;
 window.addEventListener('load', function (event) {
 
     setTime();
@@ -22,7 +22,7 @@ function drawIcons() {
     var items = document.querySelectorAll('[id^="item"]');
 
     for (c = 0; c < items.length; c++) {
-        if (localStorage.getItem("note-" + items[c].id) != "" && localStorage.getItem("note-" + items[c].id) != null) {
+        if (localStorage.getItem("note-" + items[c].id) !== null) {
             items[c].innerHTML += "<i id='icon-" + items[c].id + "' class='material-icons cell_icon'>chat</i>";
         } else {
             items[c].innerHTML += "<i id='icon-" + items[c].id + "' class='material-icons cell_icon'>chat_bubble_outline</i>";
@@ -52,16 +52,16 @@ function toggleNoteDialog() {
     }
 }
 
-function openNoteDialog(item) {
+function openNoteDialog(item_id) {
     var note = document.getElementById("note");
     toggleNoteDialog();
-    loadNote(item, note);
-    current_item = item;
+    loadNote(item_id, note);
+    current_item_id = item_id;
 }
 
-function loadNote(item, note) {
-    if (localStorage.getItem("note-" + item) !== null) {
-        note.value = localStorage.getItem("note-" + item);
+function loadNote(item_id, note) {
+    if (localStorage.getItem("note-" + item_id) !== null) {
+        note.value = localStorage.getItem("note-" + item_id);
     } else {
         note.value = "";
     }
@@ -69,19 +69,17 @@ function loadNote(item, note) {
 
 function saveNote() {
     if (note.value === "") {
-        localStorage.setItem("note-" + current_item, null);
+        localStorage.removeItem("note-" + current_item_id);
         updateIcon("chat_bubble_outline");
     } else {
-        localStorage.setItem("note-" + current_item, note.value);
+        localStorage.setItem("note-" + current_item_id, note.value);
         updateIcon("chat");
     }
-
-
     toggleNoteDialog();
 }
 
 function updateIcon(icon) {
-    var current_item_icon = document.getElementById("icon-" + current_item);
+    var current_item_icon = document.getElementById("icon-" + current_item_id);
     current_item_icon.innerHTML = icon;
 }
 
