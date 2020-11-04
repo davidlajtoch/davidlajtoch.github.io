@@ -1,4 +1,15 @@
+#darken {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
 .container {
+  z-index: 0;
   width: 90%;
   margin: 0 auto;
   font-family: 'Rajdhani', sans-serif;
@@ -6,10 +17,56 @@
 .container #time {
   font-size: 30px;
 }
+.container #note_dialog {
+  width: 0px;
+  height: 0px;
+  padding: 10px;
+  background-color: white;
+  margin: 0 auto;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  text-align: center;
+  z-index: 10;
+  transition: width 2s, height 4s;
+}
+.container #note {
+  width: calc(100% - 10px);
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  outline: none;
+  transition: 150ms ease-in-out;
+}
+.container #note:focus {
+  border-bottom: 1px solid #424242;
+}
+.container .note_dialog_buttons {
+  margin-top: 15px;
+  width: calc(100% - 10px);
+}
+.container .btn_close,
+.container .btn_confirm {
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  background: none;
+  outline: none;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+.container .btn_confirm:hover {
+  color: #00e676;
+}
+.container .btn_close:hover {
+  color: #e91e63;
+}
 .container #timetable {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   overflow: hidden;
 }
@@ -29,17 +86,18 @@
   width: 133px;
 }
 .container #timetable .practice {
-  background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+  background: linear-gradient(90deg, #3d5afe 0%, #304ffe 100%);
   color: white;
+  transition: 150ms ease-in-out;
 }
 .container #timetable .lecture {
-  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  background: linear-gradient(90deg, #e91e63 0%, #d81b60 100%);
   color: white;
+  transition: 150ms ease-in-out;
 }
 .container #timetable .lecture:hover,
 .container #timetable .practice:hover {
   opacity: 80%;
-  transition: 150ms;
   cursor: pointer;
 }
 .container #timetable .pale {
@@ -80,23 +138,25 @@
   width: 150px;
   height: 30px;
   border: 1px solid #cccccc;
+  border-radius: 3px;
   outline: none;
   font-family: 'Rajdhani', sans-serif;
   margin-top: 5px;
 }
 .container #button_lecture {
-  background-image: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  background-image: linear-gradient(90deg, #e91e63 0%, #d81b60 100%);
   margin-right: 2px;
   margin-left: 5px;
+  transition: 150ms ease-in-out;
 }
 .container #button_practice {
-  background-image: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+  background-image: linear-gradient(90deg, #3d5afe 0%, #304ffe 100%);
+  transition: 150ms ease-in-out;
 }
 .container #button_lecture:hover,
 .container #button_practice:hover {
   opacity: 80%;
   cursor: pointer;
-  transition: 150ms;
 }
 .container .button_lecture_inactive,
 .container .button_practice_inactive {

@@ -1,6 +1,7 @@
 "use strict";
 
 var time = new Date();
+var current_item;
 window.addEventListener('load', function (event) {
   setTime();
   setInterval(function () {
@@ -13,6 +14,50 @@ window.addEventListener('load', function (event) {
     buttonShowPractice();
   });
 });
+
+function toggleDarken() {
+  var darken = document.getElementById("darken");
+
+  if (darken.style.display == "block") {
+    darken.style.display = "none";
+  } else {
+    darken.style.display = "block";
+  }
+}
+
+function toggleNoteDialog() {
+  var note_dialog = document.getElementById("note_dialog");
+
+  if (note_dialog.open) {
+    note_dialog.open = false;
+    toggleDarken();
+  } else {
+    toggleDarken();
+    note_dialog.open = true;
+    note_dialog.style.width = "300px";
+    note_dialog.style.height = "100px";
+  }
+}
+
+function openNoteDialog(item) {
+  var note = document.getElementById("note");
+  toggleNoteDialog();
+
+  if (localStorage.getItem("note-" + item) != null) {
+    loadNote(item, note);
+  }
+
+  current_item = item;
+}
+
+function loadNote(item, note) {
+  note.value = localStorage.getItem("note-" + item);
+}
+
+function saveNote() {
+  localStorage.setItem("note-" + current_item, note.value);
+  toggleNoteDialog();
+}
 
 function setTime() {
   time = new Date();
@@ -65,7 +110,6 @@ function setPin(time) {
   var pin_height = pin.offsetHeight;
   pin.style.top = pin_height * time.getDay() + 'px';
   var table_cell_width = document.getElementById('first_cell').offsetWidth;
-  console.log(table_cell_width);
   var secs = time.getSeconds() + 60 * time.getMinutes() + 60 * 60 * time.getHours();
   var secs_in_timetable = 30600;
   var secs_until_timetable = 26100;

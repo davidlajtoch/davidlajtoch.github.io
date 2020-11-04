@@ -5,12 +5,15 @@
     <title>LAJ0015 Rozvrh</title>
     <link rel="stylesheet" href="style/dist/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     <script src="script/script.js"></script>
 </head>
 
 <body>
+
+    <div id="darken"></div>
 
     <div class="container">
 
@@ -23,14 +26,25 @@
             </div>
         </div>
 
+        <dialog id="note_dialog">
+            <div class="note_dialog_inner">
+                Poznámka<br><br>
+                <input type="text" id="note" name="note"><br>
+                <div class="note_dialog_buttons">
+                    <button class="btn_close" onclick="toggleNoteDialog()"><i class="material-icons">close</i></button>
+                    <button class="btn_confirm" onclick="saveNote()"><i class="material-icons">check</i></button>
+                </div>
+            </div>
+        </dialog>
+
         <div class="timetable_container">
-            
+
             <table id="timetable">
                 <div id="pin"></div>
                 <thead>
                     <tr>
-                        <th></th>
-                        <th id="first_cell">07:15 <br> 08:00</th>
+                        <th id="first_cell"></th>
+                        <th>07:15 <br> 08:00</th>
                         <th>08:00 <br> 08:45</th>
                         <th>09:00 <br> 09:45</th>
                         <th>09:45 <br> 10:30</th>
@@ -47,22 +61,22 @@
                         <th>Pondělí</th>
                         <td></td>
                         <td></td>
-                        <td colspan="2" class="lecture">
+                        <td id="item1" colspan="2" class="lecture" onclick="openNoteDialog(this.id)">
                             VIA<br>
                             M. Radecký<br>
                             POREC2
                         </td>
-                        <td colspan="2" class="practice">
+                        <td id="item2" colspan="2" class="practice" onclick="openNoteDialog(this.id)">
                             VIA<br>
                             M. Radecký<br>
                             PORRV203
                         </td>
-                        <td colspan="2" class="lecture">
+                        <td id="item3" colspan="2" class="lecture" onclick="openNoteDialog(this)">
                             POS<br>
                             P. Moravec<br>
                             POREC2
                         </td>
-                        <td colspan="2" class="practice">
+                        <td id="item4" colspan="2" class="practice" onclick="openNoteDialog(this)">
                             VIS Lichý<br>
                             D. Ježek<br>
                             EB430
@@ -72,19 +86,19 @@
                         <th>Úterý</th>
                         <td></td>
                         <td></td>
-                        <td colspan="2" class="practice">
+                        <td id="item5" colspan="2" class="practice" onclick="openNoteDialog(this)">
                             AT.NET<br>
                             J.Janoušek<br>
                             PORRV203
                         </td>
-                        <td colspan="2" class="practice">
+                        <td id="item6" colspan="2" class="practice" onclick="openNoteDialog(this)">
                             ESPORT<br>
                             <br>
                             POREB317
                         </td>
                         <td></td>
                         <td></td>
-                        <td colspan="2" class="lecture">
+                        <td id="item7" colspan="2" class="lecture" onclick="openNoteDialog(this)">
                             VIS<br>
                             M. Kudělka<br>
                             EC1
@@ -92,7 +106,7 @@
                     </tr>
                     <tr>
                         <th>Středa</th>
-                        <td colspan="3" class="practice">
+                        <td id="item8" colspan="3" class="practice" onclick="openNoteDialog(this)">
                             POS<br>
                             M. Krumnikl<br>
                             EB425
@@ -100,12 +114,12 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td colspan="2" class="lecture">
+                        <td id="item9" colspan="2" class="lecture" onclick="openNoteDialog(this)">
                             AT.NET<br>
                             J. Janoušek<br>
                             POREC3
                         </td>
-                        <td colspan="2" class="lecture">
+                        <td id="item10" colspan="2" class="lecture" onclick="openNoteDialog(this)">
                             ESPORT<br>
                             <br>
                             POREC3
