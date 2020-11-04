@@ -4,6 +4,7 @@ var time = new Date();
 var current_item;
 window.addEventListener('load', function (event) {
   setTime();
+  drawIcons();
   setInterval(function () {
     setTime();
   }, 1000);
@@ -14,6 +15,18 @@ window.addEventListener('load', function (event) {
     buttonShowPractice();
   });
 });
+
+function drawIcons() {
+  var items = document.querySelectorAll('[id^="item"]');
+
+  for (c = 0; c < items.length; c++) {
+    if (localStorage.getItem("note-" + items[c].id) != "" && localStorage.getItem("note-" + items[c].id) != null) {
+      items[c].innerHTML += "<i id='icon-" + items[c].id + "' class='material-icons cell_icon'>chat</i>";
+    } else {
+      items[c].innerHTML += "<i id='icon-" + items[c].id + "' class='material-icons cell_icon'>chat_bubble_outline</i>";
+    }
+  }
+}
 
 function toggleDarken() {
   var darken = document.getElementById("darken");
@@ -42,21 +55,33 @@ function toggleNoteDialog() {
 function openNoteDialog(item) {
   var note = document.getElementById("note");
   toggleNoteDialog();
-
-  if (localStorage.getItem("note-" + item) != null) {
-    loadNote(item, note);
-  }
-
+  loadNote(item, note);
   current_item = item;
 }
 
 function loadNote(item, note) {
-  note.value = localStorage.getItem("note-" + item);
+  if (localStorage.getItem("note-" + item) !== null) {
+    note.value = localStorage.getItem("note-" + item);
+  } else {
+    note.value = "";
+  }
 }
 
 function saveNote() {
-  localStorage.setItem("note-" + current_item, note.value);
+  if (note.value === "") {
+    localStorage.setItem("note-" + current_item, null);
+    updateIcon("chat_bubble_outline");
+  } else {
+    localStorage.setItem("note-" + current_item, note.value);
+    updateIcon("chat");
+  }
+
   toggleNoteDialog();
+}
+
+function updateIcon(icon) {
+  var current_item_icon = document.getElementById("icon-" + current_item);
+  current_item_icon.innerHTML = icon;
 }
 
 function setTime() {
